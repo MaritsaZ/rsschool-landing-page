@@ -22,11 +22,22 @@
     font-display: swap;
 }
 
+/* Colors */
+
 :root {
     --color-text-primary: #403F3D;
-    --color-background-page: #E1D4C9;
+    --color-text-accent: #B0907A;
+    --color-text-dark: #403F3D;
+    --color-text-inverse: #E1D4C9;
+
     --color-background-container: #665F55;
+    --color-background-page: #E1D4C9;
+
+    --color-border-inverse: #665F55;
+    --color-border-primary: #C1B6AD;
 }
+
+/* Base */
 
 * {
     box-sizing: border-box;
@@ -38,8 +49,10 @@ html {
 
 body {
     margin: 0;
+
     font-family: 'Inter', sans-serif;
     color: var(--color-text-primary);
+
     background-color: var(--color-background-page);
 }
 
@@ -73,6 +86,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     min-height: 60px;
 }
 
@@ -119,21 +133,61 @@ button {
     gap: 20px;
 }
 
+/* Theme switch */
+
 .theme-switch {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    gap: 8px;
 
-    padding: 0;
-    border: 0;
-    background: transparent;
+    width: 88px;
+    height: 44px;
+    padding: 4px;
+
+    border: 1px solid var(--color-border-primary);
+    border-radius: 100px;
+
+    background-color: transparent;
+
     cursor: pointer;
 }
+
+.theme-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+}
+
+/* Active light theme */
+
+.theme-option-light {
+    background-color: var(--color-border-primary);
+}
+
+.theme-icon-sun {
+    width: 22px;
+    height: 22px;
+}
+
+.theme-icon-moon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Menu */
 
 .menu-link {
     display: flex;
     align-items: center;
     gap: 8px;
+
+    white-space: nowrap;
 
     font-size: 16px;
     font-weight: 600;
@@ -141,6 +195,39 @@ button {
 }
 
 .menu-icon {
+    display: block;
+
     width: 20px;
     height: 20px;
+
+    flex-shrink: 0;
+}
+
+/* Hero */
+
+.hero {
+    margin-top: 20px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    max-width: 1360px;
+    padding: 100px;
+
+    border-radius: 40px;
+
+    background-image: url('../assets/images/img-hero.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hero-offer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
