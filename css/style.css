@@ -22,7 +22,10 @@
     font-display: swap;
 }
 
-/* Colors */
+
+/* =========================
+   Colors
+   ========================= */
 
 :root {
     --color-text-primary: #403F3D;
@@ -37,7 +40,10 @@
     --color-border-primary: #C1B6AD;
 }
 
-/* Base */
+
+/* =========================
+   Base
+   ========================= */
 
 * {
     box-sizing: border-box;
@@ -69,14 +75,20 @@ button {
     font: inherit;
 }
 
-/* Container */
+
+/* =========================
+   Container
+   ========================= */
 
 .container {
     max-width: 1360px;
     margin-inline: auto;
 }
 
-/* Header */
+
+/* =========================
+   Header
+   ========================= */
 
 .header {
     padding-top: 20px;
@@ -90,6 +102,7 @@ button {
     min-height: 60px;
 }
 
+
 /* Logo */
 
 .logo {
@@ -100,6 +113,7 @@ button {
     width: 100px;
     height: 60px;
 }
+
 
 /* Navigation */
 
@@ -125,6 +139,7 @@ button {
     line-height: 150%;
 }
 
+
 /* Header actions */
 
 .header-actions {
@@ -133,7 +148,10 @@ button {
     gap: 20px;
 }
 
-/* Theme switch */
+
+/* =========================
+   Theme switch
+   ========================= */
 
 .theme-switch {
     display: flex;
@@ -164,6 +182,7 @@ button {
     border-radius: 50%;
 }
 
+
 /* Active light theme */
 
 .theme-option-light {
@@ -180,7 +199,10 @@ button {
     height: 18px;
 }
 
-/* Menu */
+
+/* =========================
+   Menu link
+   ========================= */
 
 .menu-link {
     display: flex;
@@ -203,7 +225,10 @@ button {
     flex-shrink: 0;
 }
 
-/* Hero */
+
+/* =========================
+   Hero
+   ========================= */
 
 .hero {
     margin-top: 20px;
@@ -262,7 +287,10 @@ button {
     line-height: 150%;
 }
 
-/* Hero button */
+
+/* =========================
+   Hero button
+   ========================= */
 
 .hero-button {
     display: flex;
@@ -307,4 +335,225 @@ button {
 .hero-button:hover img {
     opacity: 1;
     transform: translateX(8px);
+}
+
+
+/* =========================
+   Favorite Coffee
+   ========================= */
+
+.favorite-coffee {
+    padding-top: 100px;
+}
+
+.favorite-coffee .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+
+/* Section title */
+
+.section-title {
+    margin: 0;
+
+    color: var(--color-text-primary);
+
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+    text-align: center;
+}
+
+.section-title span {
+    color: var(--color-text-accent);
+    font-style: italic;
+}
+
+
+/* =========================
+   Coffee slider
+   ========================= */
+
+.coffee-slider {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    width: 100%;
+    min-height: 684px;
+}
+
+
+/* Slider buttons */
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 60px;
+    height: 60px;
+    padding: 0;
+
+    border: 1px solid var(--color-border-inverse);
+    border-radius: 50%;
+
+    color: var(--color-text-primary);
+    background-color: transparent;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    transform: translateY(-50%);
+
+    transition:
+        color 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.slider-button-left {
+    left: 0;
+}
+
+.slider-button-right {
+    right: 0;
+}
+
+.slider-button:hover {
+    color: var(--color-text-inverse);
+    background-color: var(--color-background-container);
+}
+
+
+/* =========================
+   Coffee slide
+   ========================= */
+
+.coffee-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 480px;
+}
+
+.coffee-slide-image {
+    width: 480px;
+    height: 480px;
+
+    object-fit: contain;
+}
+
+
+/* =========================
+   Coffee description
+   ========================= */
+
+.coffee-slide-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    width: 480px;
+    margin-top: 20px;
+
+    text-align: center;
+}
+
+.coffee-slide-title {
+    margin: 0;
+
+    color: var(--color-text-primary);
+
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 125%;
+}
+
+.coffee-slide-text {
+    margin: 0;
+
+    color: var(--color-text-primary);
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    text-align: center;
+}
+
+.coffee-slide-price {
+    margin: 0;
+
+    color: var(--color-text-primary);
+
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 125%;
+}
+
+/* Slider controls */
+
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.slider-control {
+    width: 40px;
+    height: 4px;
+
+    border-radius: 100px;
+
+    background-color: var(--color-border-primary);
+}
+
+.slider-control-active {
+    background-color: var(--color-border-inverse);
+}
+
+/* Coffee slides wrapper */
+
+.coffee-slides {
+    width: 480px;
+}
+
+/* Show only active slide */
+
+.coffee-slide {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    width: 480px;
+}
+
+.coffee-slide-active {
+    display: flex;
+}
+
+/* Keep slider arrows visible */
+
+.slider-button {
+    z-index: 2;
+}
+
+.slider-button-left {
+    left: 0;
+}
+
+.slider-button-right {
+    right: 0;
 }
