@@ -1,0 +1,146 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/fonts/Inter_18pt-Regular.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/fonts/Inter_18pt-SemiBold.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/fonts/Inter_18pt-SemiBoldItalic.woff2') format('woff2');
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+}
+
+:root {
+    --color-text-primary: #403F3D;
+    --color-background-page: #E1D4C9;
+    --color-background-container: #665F55;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text-primary);
+    background-color: var(--color-background-page);
+}
+
+img {
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+/* Container */
+
+.container {
+    max-width: 1360px;
+    margin-inline: auto;
+}
+
+/* Header */
+
+.header {
+    padding-top: 20px;
+}
+
+.header-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+}
+
+/* Logo */
+
+.logo {
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 100px;
+    height: 60px;
+}
+
+/* Navigation */
+
+.nav {
+    flex: 1;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.nav-link {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%;
+}
+
+/* Header actions */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.theme-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%;
+}
+
+.menu-icon {
+    width: 20px;
+    height: 20px;
+}
