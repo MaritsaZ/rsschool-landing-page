@@ -802,3 +802,33 @@ a.contact-item::after {
 a.contact-item:hover::after {
     transform: scaleX(1);
 }
+
+body,
+.theme-switch,
+.theme-option,
+.slider-button,
+.store-button {
+    transition:
+        background-color 0.5s ease,
+        color 0.5s ease,
+        border-color 0.5s ease;
+}
+
+body.dark-theme {
+    --color-text-primary: #E1D4C9;
+    --color-text-dark: #E1D4C9;
+
+    --color-background-page: #403F3D;
+    --color-background-container: #665F55;
+
+    --color-border-inverse: #C1B6AD;
+    --color-border-primary: #665F55;
+}
+
+body.dark-theme .theme-option-light {
+    background-color: transparent;
+}
+
+body.dark-theme .theme-option-dark {
+    background-color: var(--color-border-primary);
+}
