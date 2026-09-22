@@ -48,3 +48,30 @@ themeSwitch.addEventListener('click', () => {
         localStorage.setItem('theme', 'light');
     }
 });
+
+const burgerButton = document.querySelector('.burger-button');
+const navigationLinks = document.querySelectorAll('.nav-link');
+const menuLink = document.querySelector('.menu-link');
+
+function closeBurgerMenu() {
+    document.body.classList.remove('menu-open');
+    burgerButton.setAttribute('aria-expanded', 'false');
+    burgerButton.setAttribute('aria-label', 'Open menu');
+}
+
+burgerButton.addEventListener('click', () => {
+    const isOpen = document.body.classList.toggle('menu-open');
+
+    burgerButton.setAttribute('aria-expanded', String(isOpen));
+
+    burgerButton.setAttribute(
+        'aria-label',
+        isOpen ? 'Close menu' : 'Open menu'
+    );
+});
+
+navigationLinks.forEach((link) => {
+    link.addEventListener('click', closeBurgerMenu);
+});
+
+menuLink.addEventListener('click', closeBurgerMenu);

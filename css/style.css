@@ -198,12 +198,43 @@ button {
     transform: scaleX(0);
     transform-origin: center;
 
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
 .nav-link:hover::after,
 .menu-link:hover::after {
     transform: scaleX(1);
+}
+
+.burger-button {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    border: 1px solid var(--color-border-inverse);
+    border-radius: 50%;
+
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.burger-button span {
+    display: block;
+
+    width: 16px;
+    height: 1.5px;
+
+    background-color: var(--color-text-primary);
+
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
 }
 
 .hero {
@@ -284,6 +315,7 @@ button {
 
 .hero-button span {
     transform: translateX(10px);
+
     transition: transform 0.3s ease;
 }
 
@@ -773,6 +805,7 @@ button {
 
 .contact-icon img {
     display: block;
+
     max-width: 20px;
     max-height: 20px;
 }
@@ -831,4 +864,141 @@ body.dark-theme .theme-option-light {
 
 body.dark-theme .theme-option-dark {
     background-color: var(--color-border-primary);
+}
+
+@media (max-width: 768px) {
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    .container {
+        max-width: none;
+        width: calc(100% - 80px);
+    }
+
+    .header {
+        position: relative;
+        z-index: 100;
+        padding-top: 20px;
+    }
+
+    .header-menu {
+        width: 100%;
+        padding-inline: 40px;
+    }
+
+    .header-actions {
+        gap: 20px;
+    }
+
+    .burger-button {
+        display: flex;
+        position: relative;
+        z-index: 102;
+    }
+
+    .nav {
+        position: fixed;
+        top: 80px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 99;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        padding-top: 160px;
+
+        background-color: var(--color-background-page);
+
+        visibility: hidden;
+        opacity: 0;
+
+        transform: translateX(100%);
+
+        transition:
+            transform 0.5s ease,
+            opacity 0.5s ease,
+            visibility 0.5s;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .nav-link {
+        font-size: 32px;
+        line-height: 125%;
+    }
+
+    .menu-link {
+        position: fixed;
+        top: 680px;
+        left: 50%;
+        z-index: 101;
+
+        display: flex;
+
+        font-size: 32px;
+        line-height: 125%;
+
+        visibility: hidden;
+        opacity: 0;
+
+        transform: translateX(calc(-50% + 100vw));
+
+        transition:
+            transform 0.5s ease,
+            opacity 0.5s ease,
+            visibility 0.5s;
+    }
+
+    .menu-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    body.menu-open .nav {
+        visibility: visible;
+        opacity: 1;
+
+        transform: translateX(0);
+    }
+
+    body.menu-open .menu-link {
+        visibility: visible;
+        opacity: 1;
+
+        transform: translateX(-50%);
+    }
+
+    body.menu-open .burger-button span:first-child {
+        transform: translateY(3.75px) rotate(45deg);
+    }
+
+    body.menu-open .burger-button span:last-child {
+        transform: translateY(-3.75px) rotate(-45deg);
+    }
+
+    .hero {
+        margin-top: 20px;
+    }
+
+    .hero-content {
+        width: calc(100% - 80px);
+        min-height: 644px;
+        padding: 100px 60px;
+    }
+
+    .hero-offer {
+        width: 100%;
+        max-width: 530px;
+    }
+
+    .favorite-coffee {
+        padding-top: 100px;
+    }
 }
