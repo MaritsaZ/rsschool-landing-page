@@ -61,8 +61,6 @@ if (themeSwitch) {
 }
 
 
-// BURGER MENU
-
 const burgerButton = document.querySelector('.burger-button');
 const navigationLinks = document.querySelectorAll('.nav-link');
 const menuLink = document.querySelector('.menu-link');
@@ -98,4 +96,29 @@ navigationLinks.forEach((link) => {
 
 if (menuLink) {
     menuLink.addEventListener('click', closeBurgerMenu);
+}
+
+const menuTabs = document.querySelectorAll('.menu-tab');
+const menuGrids = document.querySelectorAll('.menu-grid');
+
+if (menuTabs.length > 0 && menuGrids.length > 0) {
+    menuTabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+            const category = tab.dataset.category;
+
+            menuTabs.forEach((item) => {
+                const isActive = item === tab;
+
+                item.classList.toggle('menu-tab-active', isActive);
+                item.setAttribute('aria-selected', String(isActive));
+            });
+
+            menuGrids.forEach((grid) => {
+                const isActive = grid.dataset.menu === category;
+
+                grid.hidden = !isActive;
+                grid.classList.toggle('menu-grid-active', isActive);
+            });
+        });
+    });
 }
