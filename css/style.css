@@ -33,6 +33,19 @@
     --color-border-primary: #C1B6AD;
 }
 
+body.dark-theme {
+    --color-text-primary: #E1D4C9;
+    --color-text-accent: #B0907A;
+    --color-text-dark: #E1D4C9;
+    --color-text-inverse: #403F3D;
+
+    --color-background-container: #C1B6AD;
+    --color-background-page: #403F3D;
+
+    --color-border-inverse: #E1D4C9;
+    --color-border-primary: #665F55;
+}
+
 * {
     box-sizing: border-box;
 }
