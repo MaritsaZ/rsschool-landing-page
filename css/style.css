@@ -23,10 +23,6 @@
 }
 
 
-/* =========================
-   Colors
-   ========================= */
-
 :root {
     --color-text-primary: #403F3D;
     --color-text-accent: #B0907A;
@@ -41,58 +37,56 @@
 }
 
 
-/* =========================
-   Base
-   ========================= */
-
 * {
     box-sizing: border-box;
 }
+
 
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
     margin: 0;
 
     font-family: 'Inter', sans-serif;
-    color: var(--color-text-primary);
 
+    color: var(--color-text-primary);
     background-color: var(--color-background-page);
 }
+
 
 img {
     display: block;
 }
+
 
 a {
     color: inherit;
     text-decoration: none;
 }
 
+
 button {
     font: inherit;
 }
 
 
-/* =========================
-   Container
-   ========================= */
-
 .container {
+    width: 100%;
     max-width: 1360px;
+
     margin-inline: auto;
 }
 
 
-/* =========================
-   Header
-   ========================= */
+/* Header */
 
 .header {
     padding-top: 20px;
 }
+
 
 .header-menu {
     display: flex;
@@ -103,11 +97,10 @@ button {
 }
 
 
-/* Logo */
-
 .logo {
     flex-shrink: 0;
 }
+
 
 .logo img {
     width: 100px;
@@ -115,11 +108,10 @@ button {
 }
 
 
-/* Navigation */
-
 .nav {
     flex: 1;
 }
+
 
 .nav-list {
     display: flex;
@@ -133,14 +125,13 @@ button {
     list-style: none;
 }
 
+
 .nav-link {
     font-size: 16px;
     font-weight: 600;
     line-height: 150%;
 }
 
-
-/* Header actions */
 
 .header-actions {
     display: flex;
@@ -149,9 +140,7 @@ button {
 }
 
 
-/* =========================
-   Theme switch
-   ========================= */
+/* Theme switch */
 
 .theme-switch {
     display: flex;
@@ -161,6 +150,7 @@ button {
 
     width: 88px;
     height: 44px;
+
     padding: 4px;
 
     border: 1px solid var(--color-border-primary);
@@ -170,6 +160,7 @@ button {
 
     cursor: pointer;
 }
+
 
 .theme-option {
     display: flex;
@@ -183,16 +174,16 @@ button {
 }
 
 
-/* Active light theme */
-
 .theme-option-light {
     background-color: var(--color-border-primary);
 }
+
 
 .theme-icon-sun {
     width: 22px;
     height: 22px;
 }
+
 
 .theme-icon-moon {
     width: 18px;
@@ -200,9 +191,7 @@ button {
 }
 
 
-/* =========================
-   Menu link
-   ========================= */
+/* Menu link */
 
 .menu-link {
     display: flex;
@@ -216,9 +205,8 @@ button {
     line-height: 150%;
 }
 
-.menu-icon {
-    display: block;
 
+.menu-icon {
     width: 20px;
     height: 20px;
 
@@ -226,13 +214,12 @@ button {
 }
 
 
-/* =========================
-   Hero
-   ========================= */
+/* Hero */
 
 .hero {
     margin-top: 20px;
 }
+
 
 .hero-content {
     display: flex;
@@ -240,8 +227,9 @@ button {
     justify-content: center;
     align-items: flex-start;
 
-    max-width: 1360px;
+    width: 100%;
     min-height: 644px;
+
     padding: 100px;
 
     border-radius: 40px;
@@ -252,17 +240,21 @@ button {
     background-repeat: no-repeat;
 }
 
+
 .hero-offer {
     display: flex;
-    width: 530px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 40px;
+
+    width: 530px;
 }
+
 
 .hero-title {
     max-width: 530px;
+
     margin: 0;
 
     color: var(--color-text-inverse);
@@ -272,10 +264,13 @@ button {
     line-height: 105%;
 }
 
+
 .hero-title span {
     color: var(--color-text-accent);
+
     font-style: italic;
 }
+
 
 .hero-text {
     margin: 0;
@@ -288,10 +283,6 @@ button {
 }
 
 
-/* =========================
-   Hero button
-   ========================= */
-
 .hero-button {
     display: flex;
     justify-content: center;
@@ -303,12 +294,13 @@ button {
     border-radius: 100px;
 
     background-color: var(--color-background-page);
-
     color: var(--color-text-primary);
+
     font-size: 16px;
     font-weight: 600;
     line-height: 150%;
 }
+
 
 .hero-button span {
     transform: translateX(10px);
@@ -316,11 +308,13 @@ button {
     transition: transform 0.3s ease;
 }
 
+
 .hero-button img {
     width: 20px;
     height: 20px;
 
     opacity: 0;
+
     transform: translateX(10px);
 
     transition:
@@ -328,23 +322,25 @@ button {
         transform 0.3s ease;
 }
 
+
 .hero-button:hover span {
     transform: translateX(0);
 }
 
+
 .hero-button:hover img {
     opacity: 1;
+
     transform: translateX(8px);
 }
 
 
-/* =========================
-   Favorite Coffee
-   ========================= */
+/* Favorite coffee */
 
 .favorite-coffee {
     padding-top: 100px;
 }
+
 
 .favorite-coffee .container {
     display: flex;
@@ -354,8 +350,6 @@ button {
 }
 
 
-/* Section title */
-
 .section-title {
     margin: 0;
 
@@ -364,18 +358,19 @@ button {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
+
     text-align: center;
 }
 
+
 .section-title span {
     color: var(--color-text-accent);
+
     font-style: italic;
 }
 
 
-/* =========================
-   Coffee slider
-   ========================= */
+/* Coffee slider */
 
 .coffee-slider {
     position: relative;
@@ -390,11 +385,13 @@ button {
 }
 
 
-/* Slider buttons */
+/* Slider arrows */
 
 .slider-button {
     position: absolute;
-    top: 50%;
+
+    top: 210px;
+    z-index: 2;
 
     display: flex;
     justify-content: center;
@@ -402,6 +399,7 @@ button {
 
     width: 60px;
     height: 60px;
+
     padding: 0;
 
     border: 1px solid var(--color-border-inverse);
@@ -421,31 +419,44 @@ button {
         background-color 0.3s ease;
 }
 
+
 .slider-button-left {
     left: 0;
 }
+
 
 .slider-button-right {
     right: 0;
 }
 
+
 .slider-button:hover {
     color: var(--color-text-inverse);
+
     background-color: var(--color-background-container);
 }
 
 
-/* =========================
-   Coffee slide
-   ========================= */
+/* Slider slides */
+
+.coffee-slides {
+    width: 480px;
+}
+
 
 .coffee-slide {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
 
     width: 480px;
 }
+
+
+.coffee-slide-active {
+    display: flex;
+}
+
 
 .coffee-slide-image {
     width: 480px;
@@ -455,10 +466,6 @@ button {
 }
 
 
-/* =========================
-   Coffee description
-   ========================= */
-
 .coffee-slide-description {
     display: flex;
     flex-direction: column;
@@ -466,10 +473,12 @@ button {
     gap: 16px;
 
     width: 480px;
+
     margin-top: 20px;
 
     text-align: center;
 }
+
 
 .coffee-slide-title {
     margin: 0;
@@ -481,6 +490,7 @@ button {
     line-height: 125%;
 }
 
+
 .coffee-slide-text {
     margin: 0;
 
@@ -489,8 +499,10 @@ button {
     font-size: 16px;
     font-weight: 400;
     line-height: 150%;
+
     text-align: center;
 }
+
 
 .coffee-slide-price {
     margin: 0;
@@ -502,6 +514,7 @@ button {
     line-height: 125%;
 }
 
+
 /* Slider controls */
 
 .slider-controls {
@@ -510,6 +523,7 @@ button {
     align-items: center;
     gap: 12px;
 }
+
 
 .slider-control {
     width: 40px;
@@ -520,40 +534,94 @@ button {
     background-color: var(--color-border-primary);
 }
 
+
 .slider-control-active {
     background-color: var(--color-border-inverse);
 }
 
-/* Coffee slides wrapper */
 
-.coffee-slides {
-    width: 480px;
+/* About */
+
+.about {
+    padding-top: 100px;
 }
 
-/* Show only active slide */
 
-.coffee-slide {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-
-    width: 480px;
-}
-
-.coffee-slide-active {
+.about .container {
     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
 }
 
-/* Keep slider arrows visible */
 
-.slider-button {
-    z-index: 2;
+.about-title {
+    width: 100%;
+
+    text-align: left;
 }
 
-.slider-button-left {
-    left: 0;
+
+.about-images {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+
+    width: 1360px;
 }
 
-.slider-button-right {
-    right: 0;
+
+.about-column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    width: 660px;
+
+    flex: 0 0 660px;
+}
+
+
+.about-image {
+    width: 660px;
+
+    flex-shrink: 0;
+
+    border-radius: 20px;
+
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+/* Left column */
+
+.about-image-one {
+    height: 590px;
+
+    background-image: url('../assets/images/about-1.png');
+}
+
+
+.about-image-two {
+    height: 430px;
+
+    background-image: url('../assets/images/about-2.png');
+}
+
+
+/* Right column */
+
+.about-image-three {
+    height: 430px;
+
+    background-image: url('../assets/images/about-3.png');
+}
+
+
+.about-image-four {
+    height: 590px;
+
+    background-image: url('../assets/images/about-4.png');
 }
