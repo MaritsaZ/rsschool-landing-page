@@ -889,6 +889,24 @@ body.dark-theme .logo-image-dark {
     line-height: 125%;
 }
 
+.menu-refresh {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border: 1px solid var(--color-border-inverse);
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.menu-refresh img {
+    width: 24px;
+    height: 24px;
+}
+
 .nav-link,
 .menu-link,
 .contact-item {
@@ -943,7 +961,7 @@ body.dark-theme .logo-image-dark {
     }
 
     .header-menu {
-        width: 100%;
+        width: calc(100% - 80px);
     }
 
     .nav,
@@ -1054,6 +1072,14 @@ body.dark-theme .logo-image-dark {
         width: 100%;
         flex: none;
     }
+
+    .menu-grid {
+    max-width: 660px;
+    }
+
+    .menu-refresh {
+        display: flex;
+    }
 }
 
 
@@ -1063,6 +1089,10 @@ body.dark-theme .logo-image-dark {
     .container {
         width: calc(100% - 32px);
         max-width: 348px;
+    }
+
+    .menu-container {
+        gap: 40px;
     }
 
     .header {
