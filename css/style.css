@@ -75,7 +75,7 @@ button {
 }
 
 .container {
-    width: 100%;
+    width: calc(100% - 80px);
     max-width: 1360px;
     margin-inline: auto;
 }
