@@ -1203,6 +1203,14 @@ body.dark-theme .social-button {
         max-width: 660px;
     }
 
+    .menu-grid .menu-card:nth-child(n + 5) {
+        display: none;
+    }
+
+    .menu-grid.menu-grid-expanded .menu-card:nth-child(n + 5) {
+        display: flex;
+    }
+
     .menu-refresh {
         display: flex;
     }

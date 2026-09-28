@@ -104,6 +104,7 @@ if (mobileMenuLink) {
 
 const menuTabs = document.querySelectorAll('.menu-tab');
 const menuGrids = document.querySelectorAll('.menu-grid');
+const menuRefresh = document.querySelector('.menu-refresh');
 
 if (menuTabs.length > 0 && menuGrids.length > 0) {
     menuTabs.forEach((tab) => {
@@ -124,5 +125,16 @@ if (menuTabs.length > 0 && menuGrids.length > 0) {
                 grid.classList.toggle('menu-grid-active', isActive);
             });
         });
+    });
+}
+
+if (menuRefresh) {
+    menuRefresh.addEventListener('click', () => {
+        const activeGrid = document.querySelector('.menu-grid-active');
+
+        if (activeGrid) {
+            activeGrid.classList.add('menu-grid-expanded');
+            menuRefresh.style.display = 'none';
+        }
     });
 }
