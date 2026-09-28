@@ -64,6 +64,7 @@ if (themeSwitch) {
 const burgerButton = document.querySelector('.burger-button');
 const navigationLinks = document.querySelectorAll('.nav-link');
 const menuLink = document.querySelector('.menu-link');
+const mobileMenuLink = document.querySelector('.menu-link-mobile');
 
 function closeBurgerMenu() {
     document.body.classList.remove('menu-open');
@@ -96,6 +97,9 @@ navigationLinks.forEach((link) => {
 
 if (menuLink) {
     menuLink.addEventListener('click', closeBurgerMenu);
+}
+if (mobileMenuLink) {
+    mobileMenuLink.addEventListener('click', closeBurgerMenu);
 }
 
 const menuTabs = document.querySelectorAll('.menu-tab');

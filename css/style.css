@@ -164,7 +164,7 @@ body.dark-theme .logo-image-dark {
 }
 
 .theme-option-light {
-    background-color: var(--color-border-primary);
+    background-color: var(--color-text-accent);
 }
 
 .theme-icon-sun {
@@ -233,11 +233,13 @@ body.dark-theme .theme-option-light:hover {
     flex-shrink: 0;
 }
 
-.burger-button {
+.menu-link-mobile {
     display: none;
 }
 
-
+.burger-button {
+    display: none;
+}
 
 .hero {
     margin-top: 20px;
@@ -374,7 +376,7 @@ body.dark-theme .theme-option-light:hover {
     width: 60px;
     height: 60px;
     padding: 0;
-    border: 1px solid var(--color-border-inverse);
+    border: 1.5px solid var(--color-border-inverse);
     border-radius: 50%;
     color: var(--color-text-primary);
     background-color: transparent;
@@ -583,7 +585,7 @@ body.dark-theme .theme-option-light:hover {
     width: 200px;
     height: 64px;
     padding: 12px 20px;
-    border: 1px solid var(--color-border-inverse);
+    border: 1.5px solid var(--color-border-inverse);
     border-radius: 100px;
     color: var(--color-text-primary);
     background-color: transparent;
@@ -738,8 +740,6 @@ body.dark-theme .theme-option-light:hover {
     height: 20px;
     object-fit: contain;
 }
-
-
 
 .menu {
     padding-top: 20px;
@@ -1015,38 +1015,118 @@ body.dark-theme .social-button {
         display: none;
     }
 
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    body.menu-open .nav {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        z-index: 10;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 100px;
+
+        width: 100%;
+        height: calc(100vh - 80px);
+        padding: 60px 40px;
+
+        background-color: var(--color-background-page);
+    }
+
+    body.menu-open .nav-list {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 60px;
+        width: 100%;
+        padding: 0;
+    }
+
+    body.menu-open .nav-link {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 125%;
+    }
+
+    body.menu-open .menu-link-mobile {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 16px;
+        width: 100%;
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 125%;
+    }
+
+    body.menu-open .menu-link-mobile .menu-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    body.menu-open .menu-link {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+
+        width: 100%;
+
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 125%;
+    }
+
     .header-actions {
-        gap: 8px;
+        gap: 24px;
+    }
+
+    .menu-link-mobile {
+        display: none;
     }
 
     .burger-button {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 6px;
         width: 44px;
         height: 44px;
         padding: 0;
-        border: 1px solid var(--color-border-inverse);
+        border: 1.5px solid var(--color-border-inverse);
         border-radius: 50%;
         background-color: transparent;
         cursor: pointer;
     }
 
     .burger-button span {
-        position: relative;
-        width: 18px;
-        height: 1px;
-        background-color: var(--color-text-primary);
+        width: 16px;
+        height: 0;
+        border-top: 2px solid var(--color-text-primary);
+        border-radius: 2px;
     }
 
-    .burger-button span::after {
-        content: '';
+    body.menu-open .burger-button {
+        gap: 0;
+    }
+
+    body.menu-open .burger-button span {
         position: absolute;
-        left: 0;
-        top: 6px;
-        width: 18px;
-        height: 1px;
-        background-color: var(--color-text-primary);
+        width: 16px;
+    }
+
+    body.menu-open .burger-button span:first-child {
+        transform: rotate(45deg);
+    }
+
+    body.menu-open .burger-button span:last-child {
+        transform: rotate(-45deg);
     }
 
     .hero-content {
@@ -1120,7 +1200,7 @@ body.dark-theme .social-button {
     }
 
     .menu-grid {
-    max-width: 660px;
+        max-width: 660px;
     }
 
     .menu-refresh {
@@ -1155,7 +1235,7 @@ body.dark-theme .social-button {
     }
 
     .header-actions {
-        gap: 8px;
+        gap: 24px;
     }
 
     .theme-switch {
