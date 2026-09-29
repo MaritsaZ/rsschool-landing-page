@@ -473,13 +473,21 @@ const menuProducts = {
 const menuCards = document.querySelectorAll('.menu-card');
 const menuModal = document.querySelector('.menu-modal');
 const menuModalClose = document.querySelector('.menu-modal-close');
+const menuModalBackdrop = document.querySelector('.menu-modal-backdrop');
 const menuModalImage = document.querySelector('.menu-modal-image');
 const menuModalName = document.querySelector('.menu-modal-name');
 const menuModalText = document.querySelector('.menu-modal-text');
 const menuModalPrice = document.querySelector('.menu-modal-price');
 const menuModalSizeButtons = document.querySelectorAll('[data-size]');
-
 const menuModalAdditiveButtons = document.querySelectorAll('[data-additive]');
+
+const menuModalSizeLabels = document.querySelectorAll(
+    '[data-size] .menu-modal-option-text'
+);
+
+const menuModalAdditiveLabels = document.querySelectorAll(
+    '[data-additive] .menu-modal-option-text'
+);
 
 function updateModalPrice() {
     const category = menuModal.dataset.category;
@@ -517,11 +525,22 @@ if (menuModal && menuCards.length > 0) {
             menuModalName.textContent = product.name;
             menuModalText.textContent = product.description;
             menuModalPrice.textContent = `$${product.price.toFixed(2)}`;
+            menuModalSizeLabels.forEach((label, index) => {
+                const sizes = ['s', 'm', 'l'];
+                label.textContent = product.sizes[sizes[index]].label;
+            });
+
+            menuModalAdditiveLabels.forEach((label, index) => {
+                label.textContent = product.additives[index].name;
+            });
             menuModalSizeButtons.forEach((button) => {
                 button.classList.toggle(
                     'menu-modal-option-active',
                     button.dataset.size === 's'
                 );
+            });
+            menuModalAdditiveButtons.forEach((button) => {
+                button.classList.remove('menu-modal-option-active');
             });
             menuModal.hidden = false;
         });
@@ -566,6 +585,12 @@ if (menuModal && menuModalClose) {
             );
         });
 
+        menuModal.hidden = true;
+    });
+}
+
+if (menuModal && menuModalBackdrop) {
+    menuModalBackdrop.addEventListener('click', () => {
         menuModal.hidden = true;
     });
 }

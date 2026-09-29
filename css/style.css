@@ -1077,6 +1077,7 @@ body.dark-theme .social-button {
 .menu-modal-options {
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .menu-modal-option {
