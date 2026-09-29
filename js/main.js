@@ -139,20 +139,143 @@ if (menuRefresh) {
     });
 }
 
+const menuProducts = {
+    coffee: [
+        {
+            name: 'Irish coffee',
+            description: 'Fragrant black coffee with Jameson Irish whiskey and whipped milk',
+            price: 7.00,
+            image: '../assets/images/coffee/coffee-1.png',
+            sizes: {
+                s: { label: '200 ml', addPrice: 0 },
+                m: { label: '300 ml', addPrice: 0.50 },
+                l: { label: '400 ml', addPrice: 1.00 }
+            },
+            additives: [
+                { name: 'Sugar', addPrice: 0.50 },
+                { name: 'Cinnamon', addPrice: 0.50 },
+                { name: 'Syrup', addPrice: 0.50 }
+            ]
+        },
+        {
+            name: 'Kahlua coffee',
+            description: 'Classic coffee with milk and Kahlua liqueur under a cap of frothed milk',
+            price: 7.00,
+            image: '../assets/images/coffee/coffee-2.png',
+            sizes: {
+                s: { label: '200 ml', addPrice: 0 },
+                m: { label: '300 ml', addPrice: 0.50 },
+                l: { label: '400 ml', addPrice: 1.00 }
+            },
+            additives: [
+                { name: 'Sugar', addPrice: 0.50 },
+                { name: 'Cinnamon', addPrice: 0.50 },
+                { name: 'Syrup', addPrice: 0.50 }
+            ]
+        }
+    ],
+
+    tea: [],
+
+    dessert: []
+};
+
 const menuCards = document.querySelectorAll('.menu-card');
 const menuModal = document.querySelector('.menu-modal');
 const menuModalClose = document.querySelector('.menu-modal-close');
+const menuModalImage = document.querySelector('.menu-modal-image');
+const menuModalName = document.querySelector('.menu-modal-name');
+const menuModalText = document.querySelector('.menu-modal-text');
+const menuModalPrice = document.querySelector('.menu-modal-price');
+const menuModalSizeButtons = document.querySelectorAll('[data-size]');
+
+const menuModalAdditiveButtons = document.querySelectorAll('[data-additive]');
+
+function updateModalPrice() {
+    const category = menuModal.dataset.category;
+    const productIndex = Number(menuModal.dataset.product);
+    const product = menuProducts[category][productIndex];
+
+    const activeSizeButton = document.querySelector(
+        '[data-size].menu-modal-option-active'
+    );
+
+    const size = activeSizeButton.dataset.size;
+
+    let totalPrice = product.price + product.sizes[size].addPrice;
+
+    menuModalAdditiveButtons.forEach((button) => {
+        if (button.classList.contains('menu-modal-option-active')) {
+            const additiveIndex = Number(button.dataset.additive);
+            totalPrice += product.additives[additiveIndex].addPrice;
+        }
+    });
+
+    menuModalPrice.textContent = `$${totalPrice.toFixed(2)}`;
+}
 
 if (menuModal && menuCards.length > 0) {
     menuCards.forEach((card) => {
         card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            const productIndex = Number(card.dataset.product);
+            const product = menuProducts[category][productIndex];
+            menuModal.dataset.category = category;
+            menuModal.dataset.product = productIndex;
+            menuModalImage.src = product.image;
+            menuModalImage.alt = product.name;
+            menuModalName.textContent = product.name;
+            menuModalText.textContent = product.description;
+            menuModalPrice.textContent = `$${product.price.toFixed(2)}`;
+            menuModalSizeButtons.forEach((button) => {
+                button.classList.toggle(
+                    'menu-modal-option-active',
+                    button.dataset.size === 's'
+                );
+            });
             menuModal.hidden = false;
         });
     });
 }
 
+menuModalSizeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        menuModalSizeButtons.forEach((item) => {
+            item.classList.remove('menu-modal-option-active');
+        });
+
+        button.classList.add('menu-modal-option-active');
+
+        updateModalPrice();
+    });
+});
+
+menuModalAdditiveButtons.forEach((button) => {
+    button.classList.remove('menu-modal-option-active');
+});
+
+menuModalAdditiveButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('menu-modal-option-active');
+
+        updateModalPrice();
+    });
+});
+
+
 if (menuModal && menuModalClose) {
     menuModalClose.addEventListener('click', () => {
+        menuModalAdditiveButtons.forEach((button) => {
+            button.classList.remove('menu-modal-option-active');
+        });
+
+        menuModalSizeButtons.forEach((button) => {
+            button.classList.toggle(
+                'menu-modal-option-active',
+                button.dataset.size === 's'
+            );
+        });
+
         menuModal.hidden = true;
     });
 }
