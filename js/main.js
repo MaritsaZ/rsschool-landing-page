@@ -138,3 +138,21 @@ if (menuRefresh) {
         }
     });
 }
+
+const menuCards = document.querySelectorAll('.menu-card');
+const menuModal = document.querySelector('.menu-modal');
+const menuModalClose = document.querySelector('.menu-modal-close');
+
+if (menuModal && menuCards.length > 0) {
+    menuCards.forEach((card) => {
+        card.addEventListener('click', () => {
+            menuModal.hidden = false;
+        });
+    });
+}
+
+if (menuModal && menuModalClose) {
+    menuModalClose.addEventListener('click', () => {
+        menuModal.hidden = true;
+    });
+}
