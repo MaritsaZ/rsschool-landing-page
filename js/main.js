@@ -165,19 +165,53 @@ if (menuTabs.length > 0 && menuGrids.length > 0) {
 
                 grid.hidden = !isActive;
                 grid.classList.toggle('menu-grid-active', isActive);
+
+                if (isActive) {
+                    grid.classList.remove('menu-grid-expanded');
+                }
             });
+
+            updateMenuRefresh();
         });
     });
 }
+
+function updateMenuRefresh() {
+    if (!menuRefresh) {
+        return;
+    }
+
+    const activeGrid = document.querySelector('.menu-grid-active');
+
+    if (!activeGrid) {
+        return;
+    }
+
+    const cards = activeGrid.querySelectorAll('.menu-card');
+
+    if (
+        window.innerWidth <= 768 &&
+        cards.length > 4 &&
+        !activeGrid.classList.contains('menu-grid-expanded')
+    ) {
+        menuRefresh.style.display = 'flex';
+    } else {
+        menuRefresh.style.display = 'none';
+    }
+}
+
+updateMenuRefresh();
 
 if (menuRefresh) {
     menuRefresh.addEventListener('click', () => {
         const activeGrid = document.querySelector('.menu-grid-active');
 
-        if (activeGrid) {
-            activeGrid.classList.add('menu-grid-expanded');
-            menuRefresh.style.display = 'none';
+        if (!activeGrid) {
+            return;
         }
+
+        activeGrid.classList.add('menu-grid-expanded');
+        updateMenuRefresh();
     });
 }
 
