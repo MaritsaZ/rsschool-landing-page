@@ -106,6 +106,48 @@ const menuTabs = document.querySelectorAll('.menu-tab');
 const menuGrids = document.querySelectorAll('.menu-grid');
 const menuRefresh = document.querySelector('.menu-refresh');
 
+function createMenuCard(product, index) {
+    const card = document.createElement('article');
+
+    card.classList.add('menu-card');
+    card.dataset.category = product.category;
+    card.dataset.product = index;
+
+    card.innerHTML = `
+        <div class="menu-card-image">
+            <img src="${product.image}" alt="${product.name}">
+        </div>
+
+        <div class="menu-card-content">
+            <div>
+                <h2 class="menu-card-title">${product.name}</h2>
+                <p class="menu-card-text">${product.description}</p>
+            </div>
+
+            <p class="menu-card-price">$${Number(product.price).toFixed(2)}</p>
+        </div>
+    `;
+
+    return card;
+}
+
+products.forEach((product) => {
+    const categoryProducts = products.filter(
+        (item) => item.category === product.category
+    );
+
+    const productIndex = categoryProducts.indexOf(product);
+
+    const grid = document.querySelector(
+        `.menu-grid[data-menu="${product.category}"]`
+    );
+
+    if (grid) {
+        const card = createMenuCard(product, productIndex);
+        grid.append(card);
+    }
+});
+
 if (menuTabs.length > 0 && menuGrids.length > 0) {
     menuTabs.forEach((tab) => {
         tab.addEventListener('click', () => {
@@ -139,337 +181,6 @@ if (menuRefresh) {
     });
 }
 
-const menuProducts = {
-    coffee: [
-        {
-            name: 'Irish coffee',
-            description: 'Fragrant black coffee with Jameson Irish whiskey and whipped milk',
-            price: 7.00,
-            image: '../assets/images/coffee/coffee-1.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Cinnamon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-        {
-            name: 'Kahlua coffee',
-            description: 'Classic coffee with milk and Kahlua liqueur under a cap of frothed milk',
-            price: 7.00,
-            image: '../assets/images/coffee/coffee-2.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Cinnamon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-        {
-            name: 'Honey raf',
-            description: 'Espresso with frothed milk, cream and aromatic honey',
-            price: 5.50,
-            image: '../assets/images/coffee/coffee-3.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Cinnamon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-        {
-            name: 'Ice cappuccino',
-            description: 'Cappuccino with soft thick foam in summer version with ice',
-            price: 5.00,
-            image: '../assets/images/coffee/coffee-4.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Cinnamon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-        {
-            name: 'Espresso',
-            description: 'Classic black coffee',
-            price: 4.50,
-            image: '../assets/images/coffee/coffee-5.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Cinnamon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-        {
-            name: 'Latte',
-            description: 'Espresso coffee with the addition of steamed milk and dense milk foam',
-            price: 5.50,
-            image: '../assets/images/coffee/coffee-6.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Cinnamon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-
-        {
-            name: 'Latte macchiato',
-            description: 'Espresso with frothed milk and chocolate',
-            price: 5.50,
-            image: '../assets/images/coffee/coffee-7.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Cinnamon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-        {
-            name: 'Coffee with cognac',
-            description: 'Fragrant black coffee with cognac and whipped cream',
-            price: 6.50,
-            image: '../assets/images/coffee/coffee-8.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Cinnamon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        }
-    ],
-
-    tea: [
-        {
-            name: 'Moroccan',
-            description: 'Fragrant black tea with the addition of tangerine, cinnamon, honey, lemon and mint',
-            price: 4.50,
-            image: '../assets/images/tea/tea-1.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Lemon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-        {
-            name: 'Ginger',
-            description: 'Original black tea with fresh ginger, lemon and honey',
-            price: 5.00,
-            image: '../assets/images/tea/tea-2.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Lemon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-        {
-            name: 'Cranberry',
-            description: 'Invigorating black tea with cranberry and honey',
-            price: 5.00,
-            image: '../assets/images/tea/tea-3.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Lemon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        },
-        {
-            name: 'Sea buckthorn',
-            description: 'Toning sweet black tea with sea buckthorn, fresh thyme and cinnamon',
-            price: 5.50,
-            image: '../assets/images/tea/tea-4.png',
-            sizes: {
-                s: { label: '200 ml', addPrice: 0 },
-                m: { label: '300 ml', addPrice: 0.50 },
-                l: { label: '400 ml', addPrice: 1.00 }
-            },
-            additives: [
-                { name: 'Sugar', addPrice: 0.50 },
-                { name: 'Lemon', addPrice: 0.50 },
-                { name: 'Syrup', addPrice: 0.50 }
-            ]
-        }
-    ],
-
-    dessert: [{
-        name: 'Marble cheesecake',
-        description: 'Philadelphia cheese with lemon zest on a light sponge cake and red currant jam',
-        price: 3.50,
-        image: '../assets/images/dessert/dessert-1.png',
-        sizes: {
-            s: { label: '50 g', addPrice: 0 },
-            m: { label: '100 g', addPrice: 0.50 },
-            l: { label: '200 g', addPrice: 1.00 }
-        },
-        additives: [
-            { name: 'Berries', addPrice: 0.50 },
-            { name: 'Nuts', addPrice: 0.50 },
-            { name: 'Jam', addPrice: 0.50 }
-        ]
-    },
-    {
-        name: 'Red velvet',
-        description: 'Layer cake with cream cheese frosting',
-        price: 4.00,
-        image: '../assets/images/dessert/dessert-2.png',
-        sizes: {
-            s: { label: '50 g', addPrice: 0 },
-            m: { label: '100 g', addPrice: 0.50 },
-            l: { label: '200 g', addPrice: 1.00 }
-        },
-        additives: [
-            { name: 'Berries', addPrice: 0.50 },
-            { name: 'Nuts', addPrice: 0.50 },
-            { name: 'Jam', addPrice: 0.50 }
-        ]
-    },
-    {
-        name: 'Cheesecakes',
-        description: 'Soft cottage cheese pancakes with sour cream and fresh berries and sprinkled with powdered sugar',
-        price: 4.50,
-        image: '../assets/images/dessert/dessert-3.png',
-        sizes: {
-            s: { label: '50 g', addPrice: 0 },
-            m: { label: '100 g', addPrice: 0.50 },
-            l: { label: '200 g', addPrice: 1.00 }
-        },
-        additives: [
-            { name: 'Berries', addPrice: 0.50 },
-            { name: 'Nuts', addPrice: 0.50 },
-            { name: 'Jam', addPrice: 0.50 }
-        ]
-    },
-    {
-        name: 'Creme brulee',
-        description: 'Delicate creamy dessert in a caramel basket with wild berries',
-        price: 4.00,
-        image: '../assets/images/dessert/dessert-4.png',
-        sizes: {
-            s: { label: '50 g', addPrice: 0 },
-            m: { label: '100 g', addPrice: 0.50 },
-            l: { label: '200 g', addPrice: 1.00 }
-        },
-        additives: [
-            { name: 'Berries', addPrice: 0.50 },
-            { name: 'Nuts', addPrice: 0.50 },
-            { name: 'Jam', addPrice: 0.50 }
-        ]
-    },
-    {
-        name: 'Pancakes',
-        description: 'Tender pancakes with strawberry jam and fresh strawberries',
-        price: 4.50,
-        image: '../assets/images/dessert/dessert-5.png',
-        sizes: {
-            s: { label: '50 g', addPrice: 0 },
-            m: { label: '100 g', addPrice: 0.50 },
-            l: { label: '200 g', addPrice: 1.00 }
-        },
-        additives: [
-            { name: 'Berries', addPrice: 0.50 },
-            { name: 'Nuts', addPrice: 0.50 },
-            { name: 'Jam', addPrice: 0.50 }
-        ]
-    },
-    {
-        name: 'Honey cake',
-        description: 'Classic honey cake with delicate custard',
-        price: 4.50,
-        image: '../assets/images/dessert/dessert-6.png',
-        sizes: {
-            s: { label: '50 g', addPrice: 0 },
-            m: { label: '100 g', addPrice: 0.50 },
-            l: { label: '200 g', addPrice: 1.00 }
-        },
-        additives: [
-            { name: 'Berries', addPrice: 0.50 },
-            { name: 'Nuts', addPrice: 0.50 },
-            { name: 'Jam', addPrice: 0.50 }
-        ]
-    },
-    {
-        name: 'Chocolate cake',
-        description: 'Cake with hot chocolate filling and nuts with dried apricots',
-        price: 5.50,
-        image: '../assets/images/dessert/dessert-7.png',
-        sizes: {
-            s: { label: '50 g', addPrice: 0 },
-            m: { label: '100 g', addPrice: 0.50 },
-            l: { label: '200 g', addPrice: 1.00 }
-        },
-        additives: [
-            { name: 'Berries', addPrice: 0.50 },
-            { name: 'Nuts', addPrice: 0.50 },
-            { name: 'Jam', addPrice: 0.50 }
-        ]
-    },
-    {
-        name: 'Black forest',
-        description: 'A combination of thin sponge cake with cherry jam and light chocolate mousse',
-        price: 6.50,
-        image: '../assets/images/dessert/dessert-8.png',
-        sizes: {
-            s: { label: '50 g', addPrice: 0 },
-            m: { label: '100 g', addPrice: 0.50 },
-            l: { label: '200 g', addPrice: 1.00 }
-        },
-        additives: [
-            { name: 'Berries', addPrice: 0.50 },
-            { name: 'Nuts', addPrice: 0.50 },
-            { name: 'Jam', addPrice: 0.50 }
-        ]
-    }
-    ]
-};
-
 const menuCards = document.querySelectorAll('.menu-card');
 const menuModal = document.querySelector('.menu-modal');
 const menuModalClose = document.querySelector('.menu-modal-close');
@@ -489,23 +200,38 @@ const menuModalAdditiveLabels = document.querySelectorAll(
     '[data-additive] .menu-modal-option-text'
 );
 
+function getProduct(category, productIndex) {
+    const categoryProducts = products.filter(
+        (product) => product.category === category
+    );
+
+    return categoryProducts[productIndex];
+}
+
+
+
 function updateModalPrice() {
     const category = menuModal.dataset.category;
     const productIndex = Number(menuModal.dataset.product);
-    const product = menuProducts[category][productIndex];
+    const product = getProduct(category, productIndex);
 
     const activeSizeButton = document.querySelector(
         '[data-size].menu-modal-option-active'
     );
 
+    const sizePrices = {
+        s: 0,
+        m: 0.50,
+        l: 1.00,
+    };
+
     const size = activeSizeButton.dataset.size;
 
-    let totalPrice = product.price + product.sizes[size].addPrice;
+    let totalPrice = Number(product.price) + sizePrices[size];
 
     menuModalAdditiveButtons.forEach((button) => {
         if (button.classList.contains('menu-modal-option-active')) {
-            const additiveIndex = Number(button.dataset.additive);
-            totalPrice += product.additives[additiveIndex].addPrice;
+            totalPrice += 0.50;
         }
     });
 
@@ -517,22 +243,24 @@ if (menuModal && menuCards.length > 0) {
         card.addEventListener('click', () => {
             const category = card.dataset.category;
             const productIndex = Number(card.dataset.product);
-            const product = menuProducts[category][productIndex];
+            const product = getProduct(category, productIndex);
+
             menuModal.dataset.category = category;
             menuModal.dataset.product = productIndex;
             menuModalImage.src = product.image;
             menuModalImage.alt = product.name;
             menuModalName.textContent = product.name;
             menuModalText.textContent = product.description;
-            menuModalPrice.textContent = `$${product.price.toFixed(2)}`;
+            menuModalPrice.textContent = `$${Number(product.price).toFixed(2)}`;
+
             menuModalSizeLabels.forEach((label, index) => {
-                const sizes = ['s', 'm', 'l'];
-                label.textContent = product.sizes[sizes[index]].label;
+                label.textContent = product.sizes[index];
             });
 
             menuModalAdditiveLabels.forEach((label, index) => {
-                label.textContent = product.additives[index].name;
+                label.textContent = product.additives[index];
             });
+
             menuModalSizeButtons.forEach((button) => {
                 button.classList.toggle(
                     'menu-modal-option-active',
