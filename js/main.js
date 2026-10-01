@@ -305,6 +305,7 @@ if (menuModal && menuCards.length > 0) {
                 button.classList.remove('menu-modal-option-active');
             });
             menuModal.hidden = false;
+            document.body.classList.add('modal-open');
         });
     });
 }
@@ -333,26 +334,64 @@ menuModalAdditiveButtons.forEach((button) => {
     });
 });
 
+function closeMenuModal() {
+    if (!menuModal) return;
+
+    menuModalAdditiveButtons.forEach((button) => {
+        button.classList.remove('menu-modal-option-active');
+    });
+
+    menuModalSizeButtons.forEach((button) => {
+        button.classList.toggle(
+            'menu-modal-option-active',
+            button.dataset.size === 's'
+        );
+    });
+
+    menuModal.hidden = true;
+    document.body.classList.remove('modal-open');
+}
 
 if (menuModal && menuModalClose) {
-    menuModalClose.addEventListener('click', () => {
-        menuModalAdditiveButtons.forEach((button) => {
-            button.classList.remove('menu-modal-option-active');
-        });
-
-        menuModalSizeButtons.forEach((button) => {
-            button.classList.toggle(
-                'menu-modal-option-active',
-                button.dataset.size === 's'
-            );
-        });
-
-        menuModal.hidden = true;
-    });
+    menuModalClose.addEventListener('click', closeMenuModal);
 }
+
+// if (menuModal && menuModalClose) {
+//     menuModalClose.addEventListener('click', () => {
+//         menuModalAdditiveButtons.forEach((button) => {
+//             button.classList.remove('menu-modal-option-active');
+//         });
+
+//         menuModalSizeButtons.forEach((button) => {
+//             button.classList.toggle(
+//                 'menu-modal-option-active',
+//                 button.dataset.size === 's'
+//             );
+//         });
+
+//         menuModal.hidden = true;
+//     });
+// }
+
+// if (menuModal && menuModalBackdrop) {
+//     menuModalBackdrop.addEventListener('click', () => {
+//         menuModal.hidden = true;
+//     });
+// }
 
 if (menuModal && menuModalBackdrop) {
-    menuModalBackdrop.addEventListener('click', () => {
-        menuModal.hidden = true;
-    });
+    menuModalBackdrop.addEventListener('click', closeMenuModal);
 }
+
+document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+
+    if (menuModal && !menuModal.hidden) {
+        closeMenuModal();
+        return;
+    }
+
+    if (document.body.classList.contains('menu-open')) {
+        closeBurgerMenu();
+    }
+});

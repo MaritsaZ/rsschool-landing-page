@@ -995,13 +995,18 @@ body.dark-theme .social-button {
     border-color: #665F55;
 }
 
+body.modal-open {
+    overflow: hidden;
+} 
+
 .menu-modal {
     position: fixed;
     inset: 0;
     z-index: 1000;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    overflow-y: auto;
     padding: 20px;
 }
 
@@ -1012,7 +1017,7 @@ body.dark-theme .social-button {
 .menu-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(64, 63, 61, 0.8);
+    background: rgba(41, 40, 38, 0.8);
 }
 
 .menu-modal-content {
@@ -1126,7 +1131,7 @@ body.dark-theme .social-button {
     font-size: 16px;
     font-weight: 600;
     line-height: 150%;
-    
+
 }
 
 .menu-modal-total {
@@ -1198,7 +1203,7 @@ body.dark-theme .social-button {
         display: none;
     }
 
-    body.menu-open {
+    body.menu-open{
         overflow: hidden;
     }
 
@@ -1403,6 +1408,43 @@ body.dark-theme .social-button {
 
 @media (max-width: 480px) {
 
+    .menu-modal-description {
+        width: 100%;
+        padding-left: 0;
+        gap: 20px;
+    }
+
+    .menu-modal {
+        align-items: flex-start;
+        justify-content: center;
+        overflow-y: auto;
+        padding: 20px 0;
+    }
+
+    .menu-modal-content {
+        width: 342px;
+        max-width: calc(100% - 38px);
+        margin: 0 auto;
+        padding: 16px;
+        border-radius: 40px;
+    }
+
+    .menu-modal-preview {
+        display: none;
+    }
+
+    .menu-modal-description {
+        gap: 20px;
+    }
+
+    .menu-offer-title {
+        font-size: 32px;
+        line-height: 1.25;
+    }
+
+
+
+
     .container {
         width: calc(100% - 32px);
         max-width: 348px;
@@ -1438,8 +1480,6 @@ body.dark-theme .social-button {
         width: 44px;
         height: 44px;
     }
-
-
 
     .hero {
         margin-top: 20px;
@@ -1483,8 +1523,6 @@ body.dark-theme .social-button {
         opacity: 1;
         transform: translateX(8px);
     }
-
-
 
     .favorite-coffee {
         padding-top: 100px;
@@ -1537,8 +1575,6 @@ body.dark-theme .social-button {
         gap: 12px;
     }
 
-
-
     .about {
         padding-top: 100px;
     }
@@ -1583,8 +1619,6 @@ body.dark-theme .social-button {
     .about-image-three {
         display: none;
     }
-
-
 
     .mobile-app {
         padding-top: 100px;
@@ -1708,5 +1742,4 @@ body.dark-theme .social-button {
         gap: 16px;
     }
 
-    
 }
