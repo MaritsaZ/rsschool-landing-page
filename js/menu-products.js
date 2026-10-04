@@ -223,3 +223,5 @@ const products = [
     additives: ['Berries', 'Nuts', 'Jam'],
   },
 ];
+
+export { products };

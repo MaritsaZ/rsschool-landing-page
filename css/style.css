@@ -31,19 +31,34 @@
     --color-background-page: #E1D4C9;
     --color-border-inverse: #665F55;
     --color-border-primary: #C1B6AD;
+
+    /* DARK THEME — FIGMA */
+
+    --dark-text-primary: #E1D4C9;
+    --dark-text-accent: #B0907A;
+    --dark-text-inverse: #E1D4C9;
+
+    --dark-bg-container: #403F3D;
+    --dark-bg-page: #292826;
+
+    --dark-border-inverse: #C1B6AD;
+    --dark-border-primary: #665F55;
+
+    /* overlay модального окна */
+    --dark-bg-overlay: rgba(41, 40, 38, 0.8);
 }
 
 body.dark-theme {
-    --color-text-primary: #E1D4C9;
-    --color-text-accent: #B0907A;
-    --color-text-dark: #E1D4C9;
-    --color-text-inverse: #403F3D;
+    --color-text-primary: var(--dark-text-primary);
+    --color-text-accent: var(--dark-text-accent);
+    --color-text-dark: var(--dark-text-primary);
+    --color-text-inverse: var(--dark-text-inverse);
 
-    --color-background-container: #C1B6AD;
-    --color-background-page: #403F3D;
+    --color-background-container: var(--dark-bg-container);
+    --color-background-page: var(--dark-bg-page);
 
-    --color-border-inverse: #E1D4C9;
-    --color-border-primary: #665F55;
+    --color-border-inverse: var(--dark-border-inverse);
+    --color-border-primary: var(--dark-border-primary);
 }
 
 * {
@@ -132,6 +147,7 @@ body.dark-theme .logo-image-dark {
     font-size: 16px;
     font-weight: 600;
     line-height: 150%;
+    white-space: nowrap;
 }
 
 .header-actions {
@@ -402,18 +418,99 @@ body.dark-theme .theme-option-light:hover {
 }
 
 .coffee-slides {
+    position: relative;
     width: 480px;
 }
 
 .coffee-slide {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
     flex-direction: column;
     align-items: center;
     width: 480px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
 }
 
 .coffee-slide-active {
-    display: flex;
+    position: relative;
+
+    opacity: 1;
+    visibility: visible;
+}
+
+/* SLIDER ANIMATION */
+
+@keyframes slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(50vw);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-out-left {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-50vw);
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-50vw);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-out-right {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(50vw);
+    }
+}
+
+.slide-in-right {
+    animation: slide-in-right 0.5s ease-out both;
+}
+
+.slide-out-left {
+    animation: slide-out-left 0.5s ease-out both;
+}
+
+.slide-in-left {
+    animation: slide-in-left 0.5s ease-out both;
+}
+
+.slide-out-right {
+    animation: slide-out-right 0.5s ease-out both;
 }
 
 .coffee-slide-image {
@@ -687,14 +784,23 @@ body.dark-theme .theme-option-light:hover {
     align-items: center;
     width: 60px;
     height: 60px;
-    border: 1px solid var(--color-text-inverse);
+
+    border: 1px solid var(--color-border-primary);
     border-radius: 50%;
+
     color: var(--color-text-inverse);
     background-color: transparent;
+
     transition:
         color 0.5s ease,
         background-color 0.5s ease,
         border-color 0.5s ease;
+}
+
+.social-button:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-background-page);
+    border-color: var(--color-background-page);
 }
 
 .social-button svg {
@@ -984,20 +1090,9 @@ body.dark-theme .theme-option-light:hover {
     width: calc(100% - 28px);
 }
 
-
-
-.social-button:hover {
-    background-color: var(--color-text-primary);
-}
-
-body.dark-theme .social-button {
-    color: #E1D4C9;
-    border-color: #665F55;
-}
-
 body.modal-open {
     overflow: hidden;
-} 
+}
 
 .menu-modal {
     position: fixed;
@@ -1017,7 +1112,7 @@ body.modal-open {
 .menu-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(41, 40, 38, 0.8);
+    background: var(--dark-bg-overlay);
 }
 
 .menu-modal-content {
@@ -1028,6 +1123,10 @@ body.modal-open {
     padding: 16px;
     border-radius: 40px;
     background: var(--color-background-page);
+}
+
+body.dark-theme .menu-modal-content {
+    background: var(--color-background-container);
 }
 
 .menu-modal-preview {
@@ -1120,6 +1219,27 @@ body.modal-open {
     color: var(--color-text-primary);
 }
 
+.dark-theme .menu-modal-option {
+    background-color: var(--dark-bg-container); /* #403F3D */
+    color: var(--dark-text-primary);            /* #E1D4C9 */
+}
+
+.dark-theme .menu-modal-option-icon {
+    background-color: var(--dark-border-primary); /* #665F55 */
+    color: var(--dark-text-primary);              /* #E1D4C9 */
+}
+
+.dark-theme .menu-modal-option-active {
+    background-color: var(--dark-bg-page);       /* #292826 */
+    color: var(--dark-text-primary);              /* #E1D4C9 */
+}
+
+.dark-theme .menu-modal-option-active .menu-modal-option-icon {
+    background-color: var(--dark-bg-container);  /* #403F3D */
+    color: var(--dark-text-primary);              /* #E1D4C9 */
+}
+
+
 .menu-modal-option {
     font-family: inherit;
     font-size: 16px;
@@ -1198,16 +1318,11 @@ body.modal-open {
         width: calc(100% - 80px);
     }
 
-    .nav,
     .menu-link {
         display: none;
     }
 
-    body.menu-open{
-        overflow: hidden;
-    }
-
-    body.menu-open .nav {
+    .nav {
         position: fixed;
         top: 80px;
         left: 0;
@@ -1217,13 +1332,24 @@ body.modal-open {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 100px;
 
         width: 100%;
         height: calc(100vh - 80px);
         padding: 60px 40px;
 
         background-color: var(--color-background-page);
+
+        transform: translateX(100%);
+        transition: transform 0.5s ease;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    body.menu-open .nav {
+        gap: 100px;
+        transform: translateX(0);
     }
 
     body.menu-open .nav-list {
@@ -1293,12 +1419,18 @@ body.modal-open {
         cursor: pointer;
     }
 
+
     .burger-button span {
         width: 16px;
         height: 0;
         border-top: 2px solid var(--color-text-primary);
         border-radius: 2px;
+
+        transition: transform 0.5s ease;
     }
+
+
+
 
     body.menu-open .burger-button {
         gap: 0;

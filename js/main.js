@@ -1,3 +1,4 @@
+import { products } from './menu-products.js';
 const slides = document.querySelectorAll('.coffee-slide');
 const controls = document.querySelectorAll('.slider-control');
 
@@ -6,15 +7,49 @@ const nextButton = document.querySelector('.slider-button-right');
 
 let currentSlide = 0;
 
-function showSlide(index) {
-    slides[currentSlide].classList.remove('coffee-slide-active');
+function showSlide(index, direction = 'right') {
+    if (index === currentSlide) return;
+
+    const oldSlide = slides[currentSlide];
+    const newSlide = slides[index];
+
+    oldSlide.classList.remove(
+        'slide-in-right',
+        'slide-in-left',
+        'slide-out-left',
+        'slide-out-right'
+    );
+
+    newSlide.classList.remove(
+        'slide-in-right',
+        'slide-in-left',
+        'slide-out-left',
+        'slide-out-right'
+    );
+
+    if (direction === 'right') {
+        oldSlide.classList.add('slide-out-left');
+        newSlide.classList.add('slide-in-right');
+    } else {
+        oldSlide.classList.add('slide-out-right');
+        newSlide.classList.add('slide-in-left');
+    }
+
+    oldSlide.classList.remove('coffee-slide-active');
     controls[currentSlide].classList.remove('slider-control-active');
 
     currentSlide = index;
 
-    slides[currentSlide].classList.add('coffee-slide-active');
+    newSlide.classList.add('coffee-slide-active');
     controls[currentSlide].classList.add('slider-control-active');
 }
+
+controls.forEach((control, index) => {
+    control.addEventListener('click', () => {
+        const direction = index > currentSlide ? 'right' : 'left';
+        showSlide(index, direction);
+    });
+});
 
 if (
     slides.length > 0 &&
@@ -24,14 +59,14 @@ if (
 ) {
     nextButton.addEventListener('click', () => {
         const nextSlide = (currentSlide + 1) % slides.length;
-        showSlide(nextSlide);
+        showSlide(nextSlide, 'right');
     });
 
     previousButton.addEventListener('click', () => {
         const previousSlide =
             (currentSlide - 1 + slides.length) % slides.length;
 
-        showSlide(previousSlide);
+        showSlide(previousSlide, 'left');
     });
 }
 
@@ -384,6 +419,7 @@ if (menuModal && menuModalBackdrop) {
 }
 
 document.addEventListener('keydown', (event) => {
+  
     if (event.key !== 'Escape') return;
 
     if (menuModal && !menuModal.hidden) {
@@ -394,4 +430,5 @@ document.addEventListener('keydown', (event) => {
     if (document.body.classList.contains('menu-open')) {
         closeBurgerMenu();
     }
+
 });
