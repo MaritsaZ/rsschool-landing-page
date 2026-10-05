@@ -67,6 +67,7 @@ body.dark-theme {
 
 html {
     scroll-behavior: smooth;
+    min-width: 345px;
 }
 
 body {
@@ -249,6 +250,10 @@ body.dark-theme .theme-option-light:hover {
     flex-shrink: 0;
 }
 
+.menu-link:hover svg.menu-icon {
+    color: #E1D4C9;
+}
+
 .menu-link-mobile {
     display: none;
 }
@@ -281,7 +286,6 @@ body.dark-theme .theme-option-light:hover {
     height: 100%;
     object-fit: cover;
 }
-
 
 .hero-offer {
     position: relative;
@@ -335,7 +339,7 @@ body.dark-theme .theme-option-light:hover {
     transition: transform 0.5s ease;
 }
 
-.hero-button img {
+.hero-button-icon {
     width: 20px;
     height: 20px;
     opacity: 0;
@@ -349,7 +353,7 @@ body.dark-theme .theme-option-light:hover {
     transform: translateX(0);
 }
 
-.hero-button:hover img {
+.hero-button:hover .hero-button-icon {
     opacity: 1;
     transform: translateX(8px);
 }
@@ -1332,6 +1336,9 @@ body.dark-theme .menu-modal-content {
     }
 
     .nav {
+        flex: none;
+
+        box-sizing: border-box;
         position: fixed;
         top: 80px;
         left: 0;
@@ -1349,6 +1356,7 @@ body.dark-theme .menu-modal-content {
         background-color: var(--color-background-page);
 
         transform: translateX(100%);
+        visibility: hidden;
         transition: transform 0.5s ease;
     }
 
@@ -1359,6 +1367,7 @@ body.dark-theme .menu-modal-content {
     body.menu-open .nav {
         gap: 100px;
         transform: translateX(0);
+        visibility: visible;
     }
 
     body.menu-open .nav-list {
